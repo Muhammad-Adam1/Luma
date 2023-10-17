@@ -4,14 +4,14 @@ from django.shortcuts import get_object_or_404
 
 # serializers
 from .serializers import (CustomUserSerializer, TaskSerializer, MessageSerializer, ChatSerializer,
-                          NotificationSerializer, TeamSerializer, ProjectSerializer)
+                          NotificationSerializer, TeamSerializer, ProjectSerializer, UserCreationSerializer )
 # models
 from lumapp.models import CustomUser, Task, Message, Chat, Notification, Team, Project
 
 
 # user creation api
 class CustomUserCreateView(generics.CreateAPIView):
-    serializer_class = CustomUserSerializer
+    serializer_class = UserCreationSerializer
 
 
 # getting user from the DataBase or updating the current user
@@ -28,33 +28,50 @@ class CustomUserDelete(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        user_id = self.kwargs['id']
+        user_id = self.kwargs['pk']
         return get_object_or_404(CustomUser, id=user_id)
 
 
-# getting Teams from the DataBase
-class TeamList(generics.ListAPIView):
+# Team creation and listing out
+class TeamList(generics.ListCreateAPIView):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
     permission_classes = [IsAuthenticated]
 
 
-# getting list of Projects from the DataBase
+# Retrieving, updating and destroying the specific Team
+class TeamDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+    permission_classes = [IsAuthenticated]
+
+
+# Project creation and listing out
 class ProjectList(generics.ListCreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
 
 
-# getting specific project details from the DataBase
-class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
+# Retrieving, updating and destroying the Project
+class ProjectDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_object(self):
-        # we can filter projects by team or any other criteria, For example, filter by team id
-        team_id = self.kwargs['id']
-        return get_object_or_404(Project, team__id=team_id)
+
+# Project creation and listing out
+class TaskList(generics.ListCreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+
+# Retrieving, updating and destroying the Task
+class TaskDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
 
 

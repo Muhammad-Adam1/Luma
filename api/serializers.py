@@ -3,10 +3,13 @@ from rest_framework import serializers
 from lumapp.models import CustomUser, Task, Message, Chat, Notification, Team, Project
 
 
-class CustomUserSerializer(serializers.ModelSerializer):
-    # username = serializers.CharField(required=False)
-    # password = serializers.CharField(required=False)
+class UserCreationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = '__all__'
 
+
+class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         # fields = '__all__'

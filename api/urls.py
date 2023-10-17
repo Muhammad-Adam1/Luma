@@ -9,9 +9,9 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     # generate token for the user
-    path('users/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('user/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # refresh the token for the user, so that the user can stay logged in
-    path('users/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('user/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # creating a new user
     path('user/create/', views.CustomUserCreateView.as_view(), name='user-create'),
@@ -19,13 +19,21 @@ urlpatterns = [
     # retrieving and updating a user profile
     path('user/<uuid:pk>/', views.CustomUserRetrieveUpdateView.as_view(), name='user-retrieve-update'),
 
-    # retrieving all the teams
+    # Deleting a user profile
+    path('user-deletition/<uuid:pk>/', views.CustomUserDelete.as_view(), name='user-retrieve-update'),
+
+    # creating and listing all the teams
     path('teams/', views.TeamList.as_view(), name='team-list'),
 
-    # retrieving all the Projects
-    path('projects/', views.ProjectList.as_view(), name='team-list'),
+    # retrieving, updating and deleting the specific team
+    path('team-detail/<uuid:pk>/', views.TeamDetails.as_view(), name='team-detail'),
 
-    # retrieving, updating or deleting a specific project
-    path('Project/<uuid:pk>/', views.ProjectDetail.as_view(), name='team-list'),
+    # creating and listing all the Projects
+    path('projects/', views.ProjectList.as_view(), name='project-list'),
 
+    # retrieving, updating and deleting the specific project
+    path('projects/<uuid:pk>/', views.ProjectDetails.as_view(), name='project-detail'),
+
+    path('tasks/', views.TaskList.as_view(), name='task-list'),
+    path('tasks/<uuid:pk>/', views.TaskDetails.as_view(), name='task-detail'),
 ]

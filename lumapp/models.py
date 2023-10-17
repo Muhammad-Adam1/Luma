@@ -1,6 +1,5 @@
 from django.db import models
 
-from django.db import models
 from django.contrib.auth.models import AbstractUser
 import uuid
 
@@ -49,7 +48,6 @@ class CustomUser(AbstractUser):
         verbose_name = "Custom User"
 
     def __str__(self):
-        # return str(self.user.username)
         return str(self.username)
 
     def save(self, *args, **kwargs):
