@@ -34,6 +34,10 @@ urlpatterns = [
     # retrieving, updating and deleting the specific project
     path('projects/<uuid:pk>/', views.ProjectDetails.as_view(), name='project-detail'),
 
+    # creating and listing all the Tasks
     path('tasks/', views.TaskList.as_view(), name='task-list'),
+
+    # retrieving, updating and deleting the specific project
     path('tasks/<uuid:pk>/', views.TaskDetails.as_view(), name='task-detail'),
+
 ]

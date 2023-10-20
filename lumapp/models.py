@@ -9,7 +9,7 @@ class Team(models.Model):
     team_name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.team_name   
+        return self.team_name
 
 
 class Project(models.Model):
@@ -94,7 +94,6 @@ class Task(models.Model):
 
 
 class Message(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     sender = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name='sender')
     recipient = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name='receiver')
     content = models.TextField()

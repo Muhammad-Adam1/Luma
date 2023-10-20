@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from .serializers import (CustomUserSerializer, TaskSerializer, MessageSerializer, ChatSerializer,
                           NotificationSerializer, TeamSerializer, ProjectSerializer, UserCreationSerializer )
 # models
-from lumapp.models import CustomUser, Task, Message, Chat, Notification, Team, Project
+from lumapp.models import CustomUser, Task, Notification, Team, Project
 
 
 # user creation api

@@ -22,7 +22,9 @@ from django.contrib.auth import views as auth_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('api/', include('api.urls')),
+    path('chat/', include('chat.urls')),
 
     # in this page we write our email to reset the password
     path('reset_password/', auth_view.PasswordResetView.as_view(), name="reset_password"),

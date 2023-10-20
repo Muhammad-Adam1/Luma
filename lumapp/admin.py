@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-from .models import CustomUser, Chat, Project, Team, Task, Message, Notification
+from .models import CustomUser, Project, Team, Task, Chat, Message, Notification
 
-# Register your models here.
 admin.site.register(CustomUser)
 admin.site.register(Chat)
 admin.site.register(Project)
